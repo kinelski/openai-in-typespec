@@ -1,0 +1,17 @@
+{
+  "name": "openai-tsp",
+  "workspaces": [
+    ".plugin",
+    ".plugin.azure"
+  ],
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@autorest/csharp": "3.0.0-beta.20240904.1",
+    "@azure-tools/typespec-csharp": "0.2.0-beta.20250223.1",
+    "@open-ai/plugin": "file:.plugin",
+    "@typespec/openapi3": "^0.65.0",
+    "openai-tsp": "file:"
+  },
+  "private": true
+}

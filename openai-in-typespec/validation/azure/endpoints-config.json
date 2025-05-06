@@ -1,0 +1,19 @@
+{
+  "essentialEndpoints": [
+    "/deployments/{deployment-id}/completions",
+    "/deployments/{deployment_id}/audio/speech",
+    "/deployments/{deployment_id}/audio/transcriptions",
+    "/deployments/{deployment_id}/audio/translations",
+    "/deployments/{deployment_id}/chat/completions",
+    "/deployments/{deployment_id}/images/generations",
+    "/threads/{thread_id}/messages",
+    "/vector_stores/{vector_store_id}/files/{file_id}"
+  ],
+  "coreEndpoints": [
+    "/deployments/{deployment-id}/completions",
+    "/deployments/{deployment_id}/chat/completions"
+  ],
+  "assistantsEndpoints": [
+    "/threads/{thread_id}/messages"
+  ]
+}

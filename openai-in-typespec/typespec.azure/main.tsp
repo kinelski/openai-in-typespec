@@ -1,0 +1,24 @@
+import "@typespec/http";
+import "@typespec/openapi";
+import "@typespec/openapi3";
+import "@typespec/versioning";
+
+import "./administration";
+import "./assistants";
+import "./audio";
+import "./batch";
+import "./chat";
+import "./completions";
+import "./embeddings";
+import "./files";
+import "./fine-tuning";
+import "./images";
+import "./messages";
+import "./models";
+import "./moderations";
+import "./realtime";
+import "./responses";
+import "./runs";
+import "./threads";
+import "./uploads";
+import "./vector-stores";

@@ -1,17 +1,41 @@
 {
   "name": "openai-tsp",
-  "workspaces": [
-    ".plugin",
-    ".plugin.azure"
-  ],
   "version": "0.1.0",
   "type": "module",
   "dependencies": {
-    "@autorest/csharp": "3.0.0-beta.20240904.1",
-    "@azure-tools/typespec-csharp": "0.2.0-beta.20250223.1",
-    "@open-ai/plugin": "file:.plugin",
-    "@typespec/openapi3": "^0.65.0",
-    "openai-tsp": "file:"
+    "@typespec/compiler": "^0.63.0",
+    "@typespec/rest": "^0.63.0",
+    "@typespec/openapi3": "^0.63.0",
+    "@typespec/xml": "^0.63.0",
+    "@azure-tools/typespec-autorest": "0.49.0",
+    "@azure-tools/typespec-client-generator-core": "^0.49.0",
+    "@azure-tools/typespec-azure-rulesets": "^0.49.0",
+    "@azure-tools/typespec-java": "0.27.0",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "js-yaml": "^4.1.0",
+    "semver": "^7.5.4"
+  },
+  "engines": {
+    "node": "latest",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "install:typespec": "npm install -g @typespec/compiler",
+    "generate": "npm run generate-all-openai && npm run generate-all-responses",
+    "generate-all-openai": "npm run generate-openai && npm run generate-az-openai",
+    "generate-openai": "tsp compile openai-in-typespec/entrypoints/full.openai/ --emit=@typespec/openapi3",
+    "generate-az-openai": "tsp compile openai-in-typespec/entrypoints/full.openai.azure/ --emit=@typespec/openapi3",
+    "generate-all-responses": "npm run generate-responses && npm run generate-az-responses",
+    "generate-responses": "tsp compile openai-in-typespec/entrypoints/responses/ --emit=@typespec/openapi3",
+    "generate-az-responses": "tsp compile openai-in-typespec/entrypoints/responses.azure/ --emit=@typespec/openapi3",
+    "validate": "npm run validate:azure && npm run validate:openai",
+    "validate:azure": "npm run validate:azure:openapi && npm run validate:azure:endpoints",
+    "validate:azure:endpoints": "node openai-in-typespec/scripts/validate-endpoints.js -f openai-in-typespec/generated-openapi3/full.openai.azure -e openai-in-typespec/config/validation/azure/endpoints-config.json",
+    "validate:azure:openapi": "node openai-in-typespec/scripts/validate-openapi.js --directory openai-in-typespec/generated-openapi3/full.openai.azure",
+    "validate:openai": "npm run validate:openai:openapi && npm run validate:openai:endpoints",
+    "validate:openai:endpoints": "node openai-in-typespec/scripts/validate-endpoints.js -f openai-in-typespec/generated-openapi3/full.openai/openai.yaml -e openai-in-typespec/config/validation/openai/endpoints-config.json",
+    "validate:openai:openapi": "node openai-in-typespec/scripts/validate-openapi.js --directory openai-in-typespec/generated-openapi3/full.openai/"
   },
   "private": true
 }

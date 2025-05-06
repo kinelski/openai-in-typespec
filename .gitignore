@@ -177,4 +177,7 @@ artifacts
 
 # Temporary typespec folders for typespec generation
 TempTypeSpecFiles/
-.plugin/emitter/temp/tsconfig.tsbuildinfo
+
+# Artifacts from the generator
+tspCodeModel.json
+Configuration.json

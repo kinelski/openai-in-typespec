@@ -1,0 +1,18 @@
+emit:
+  - "@typespec/openapi3"
+options:
+  "@typespec/openapi3":
+    output-file: "{project-root}/../../generated-openapi3/responses/responses.yaml"
+  "@azure-tools/typespec-java":
+    # https://github.com/Azure/typespec-azure/tree/main/packages/typespec-client-generator-core
+    emitter-output-dir: "{project-root}/../../codegen_blackhole/responses_java"
+    package-dir: "azure-ai-openai-responses"
+    namespace: "com.azure.ai.openai.responses"
+    # generate-protocol-methods: false
+    # generate-convenience-methods: false
+    partial-update: true
+    enable-sync-stack: true
+    generate-tests: false
+    generate-samples: false
+    custom-types-subpackage: "implementation.models"
+    flavor: azure

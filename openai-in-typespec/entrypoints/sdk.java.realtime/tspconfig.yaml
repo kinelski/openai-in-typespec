@@ -1,0 +1,14 @@
+options:  
+  "@azure-tools/typespec-java":
+    # https://github.com/Azure/typespec-azure/tree/main/packages/typespec-client-generator-core
+    emitter-output-dir: "{project-root}/../../codegen_blackhole/realtime_java"
+    package-dir: "azure-ai-openai-realtime"
+    namespace: "com.azure.ai.openai.realtime"
+    # generate-protocol-methods: false
+    # generate-convenience-methods: false
+    partial-update: true
+    enable-sync-stack: true
+    generate-tests: false
+    generate-samples: false
+    custom-types-subpackage: "implementation.models"
+    flavor: azure

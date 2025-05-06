@@ -1,0 +1,43 @@
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+
+namespace OpenAI.Responses;
+
+[CodeGenType("ComputerToolCallOutputOutput")]
+[Experimental("OPENAICUA001")]
+public partial class ComputerOutput
+{
+    public static ComputerOutput CreateScreenshotOutput(Uri screenshotImageUri)
+    {
+        Argument.AssertNotNull(screenshotImageUri, nameof(screenshotImageUri));
+
+        return new InternalComputerToolCallOutputOutputComputerScreenshot()
+        {
+            ImageUrl = screenshotImageUri.AbsoluteUri,
+        };
+    }
+
+    public static ComputerOutput CreateScreenshotOutput(string screenshotImageFileId)
+    {
+        Argument.AssertNotNull(screenshotImageFileId, nameof(screenshotImageFileId));
+
+        return new InternalComputerToolCallOutputOutputComputerScreenshot()
+        {
+            FileId = screenshotImageFileId,
+        };
+    }
+
+    public static ComputerOutput CreateScreenshotOutput(BinaryData screenshotImageBytes, string screenshotImageBytesMediaType)
+    {
+        Argument.AssertNotNull(screenshotImageBytes, nameof(screenshotImageBytes));
+        Argument.AssertNotNull(screenshotImageBytesMediaType, nameof(screenshotImageBytesMediaType));
+
+        string base64EncodedData = Convert.ToBase64String(screenshotImageBytes.ToArray());
+        string dataUri = $"data:{screenshotImageBytesMediaType};base64,{base64EncodedData}";
+
+        return new InternalComputerToolCallOutputOutputComputerScreenshot()
+        {
+            ImageUrl = dataUri,
+        };
+    }
+}
